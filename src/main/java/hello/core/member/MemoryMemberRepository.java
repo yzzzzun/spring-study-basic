@@ -1,20 +1,22 @@
 package hello.core.member;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class MemoryMemberRepository implements MemberRepository{
+import org.springframework.stereotype.Component;
 
-    private static Map<Long,Member> store = new ConcurrentHashMap<>();
+@Component
+public class MemoryMemberRepository implements MemberRepository {
 
-    @Override
-    public void save(Member member) {
-        store.put(member.getId(), member);
-    }
+	private static Map<Long, Member> store = new ConcurrentHashMap<>();
 
-    @Override
-    public Member findById(Long memberId) {
-        return store.get(memberId);
-    }
+	@Override
+	public void save(Member member) {
+		store.put(member.getId(), member);
+	}
+
+	@Override
+	public Member findById(Long memberId) {
+		return store.get(memberId);
+	}
 }
